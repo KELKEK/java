@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<!-- CDN이용 -->
+<script src="../JS/jquery-3.7.1.min.js"></script>
+<!-- 이제부터 jquery사용 가능, 브라우저에 상관없이 코드를 일관적으로 짤 수 있도록 함 -->
+<script>
+//$(대상).함수()
+//window.onload=function(){}와 같은 역할
+window.onload=function(){console.log("load됨1")}; //무효
+window.onload=function(){console.log("load됨2")}; //유효(마지막 것이 유효)
+$(document).ready(function(){
+	console.log("load3됨");//유효
+});
+$(document).ready(function(){
+	console.log("load4됨");//유효
+});
+//document, ready 생략가능
+$(function(){
+	console.log("load5됨");//유효
+});
+jQuery(function(){
+	console.log("load6됨");//유효
+});
+
+$(function(){
+	$("h1").css("color", "red");
+	var obj = {"background-color":"lightgreen", border:"3px dotted orange"}; //바꾸고자 하는게 많을 때
+	//backgroundColor 혹은 background-color 둘 다 가능, JS에서 배운대로
+	$("h1").css(obj);
+	var obj2 = {"backgroundColor":"blue", border:"3px dotted orange"};
+	$("#blue").css(obj2); //id를 적용했을 경우
+	$(".my").css("font-size", "50px");
+
+	$("input[type='text']").css("backgroundColor", "hotpink");
+	$("input[type='text']").val("신한금융");
+	document.querySelector("input:nth-of-type(3)").value = "12345";
+
+	//13장 20페이지
+	$("input[name |= 'tag']").val("수직바 이용(일치, -...)");
+	$("input[name *= 'First']").val("*를 이용(포함)");
+	$("input[name ^= 'Second']").val("^(캐럿)을 이용(시작)");
+	$("input[name $= 'Second']").val("$를 이용(끝)");
+	$("input[name ~= 'Third']").val("~를 이용(단어)");
+	$("input[data-aa]").val("속성이 존재하는가");
+	$("input[type='email'][data-aa='200']").val("복수조건");
+	$("input[type='button']").css("color", "red");
+	$("input:button").css("background-color", "navy");
+	$("input:disabled").val("디스에이블됨")
+});
+
+</script>
+
+</head>
+<body>
+<h1>제목1</h1>
+<h1 id="blue">제목2</h1>
+<h1 class="my">제목3</h1>
+<p class="my">ppppppppppppppppppp</p>
+<input type="text" value="">
+<input type="text">
+<input type="number">
+<input type="password">
+<input type="email">
+<input name="tag">
+<input name="tag-aa">
+<input name="aaaaaaaFirstaaaaaaaaaaa">
+<input name="Secondaaaaaaaaaaa">
+<input name="aaaaaaaaaaaaaSecond">
+<input name="aa bb Third">
+<input data-aa="100">
+<input type="email" data-aa="200">
+<input type="button" value="안녕">
+<input disabled="disabled">
+<select>
+<option>월</option>
+<option>화</option>
+<option>수</option>
+<option selected="selected">토</option>
+<option>일</option>
+</select>
+
+<table>
+	<tr>
+		<td>A</td><td>B</td><td>B</td>
+	</tr>
+	<tr>
+		<td>A</td><td>B</td><td>B</td>
+	</tr>
+	<tr>
+		<td>A</td><td>B</td><td>B</td>
+	</tr>
+	<tr>
+		<td>A</td><td>B</td><td>B</td>
+	</tr>
+	<tr>
+		<td>A</td><td>B</td><td>B</td>
+	</tr>
+</table>
+<div>
+<p>....신한.....</p>
+<p>-----신한-----</p>
+<p>ㅁㅁㅁㅁㅁㅁㅁㅁ</p>
+<div>ddddddddddddddddd신한qqqqqqqqqqqqqqqqq</div>
+<h2>신한애ㅑ버재야법재ㅑ어배쟈어배ㅑㅈ어배쟝</h2>
+</div>
+<script>
+$("table, td").css("border", "1px solid black");
+$("table, td").css("border-collapse", "collapse");
+$("td").css("padding", "10px");
+$("tr:even").css("backgroundColor", "orange");//1부터
+$("tr:odd").css("backgroundColor", "lightblue");//2부터
+$("tr:nth-child(2n)").css("color", "white");//2부터
+$("tr:nth-child(2n+1)").css("color", "black");//1부터
+
+$(function(){
+	setTimeout(function(){
+		var data = $("select option:selected").val();
+		//var data = $("select").val();
+		//둘 다 됨
+		//alert(data);
+	}, 3000); //콜백함수
+});
+
+//div의 자손중에 문자열이 "신한"이 포함되어 있는가(띄어씀, 원래 :contains하면 전체에서 신한을 찾게 됨(:contains하면 body 등 모든 곳에 대해 포함되어있는지를 찾아보게 된다.))
+$("div :contains('신한')").css("border", "2px dotted red");
+$("p:contains('신한')").css("border", "3px dotted blue");
+</script>
+
+
+</body>
+</html>

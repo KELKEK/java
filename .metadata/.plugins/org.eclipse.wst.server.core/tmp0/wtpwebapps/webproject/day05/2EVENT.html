@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+/* 	button:nth-of-type(1) */
+</style>
+<script>
+//onload : 이 윈도우의 load가 완료되면 수행한다.(함수를 호출한다. callback함수)
+window.onload = function(){
+	//이벤트 : load, click... 사건의 이름
+	//이벤트 리스너(핸들러) : 동작의 이름, 'on'이 앞에 붙어있음(onload, onclick...)
+	var btn1 = document.querySelector("button:nth-of-type(1)");//버튼인데 자식으로 처음 나왔다.
+	var btn2 = document.querySelector("button:nth-of-type(2)");
+	var btn3 = document.querySelector("button:nth-of-type(3)");
+	var btn4 = document.querySelector("button:nth-of-type(4)");
+	var btn5 = document.querySelector("button:nth-of-type(5)");
+	var btn6 = document.querySelector("button:nth-of-type(6)");
+	var here = document.querySelector("#here");
+	btn1.onclick = f_btn1;//함수를 호출하는게 아니라 넣어야 정상적으로 실행 가능
+	btn2.onclick = function(){
+		here.innerHTML = this.innerHTML;
+	};
+	console.log(btn1);
+	btn3.onclick = f_btn3;
+	btn4.onclick = f_btn4;
+	btn5.onclick = f_btn5;
+	btn6.onclick = f_btn6;
+	
+}
+function f_btn1(){
+	here.innerHTML = this.innerHTML;
+};
+function f_btn3(){
+	var now = new Date();
+	here.innerHTML = now;
+	here.innerHTML += "<br>" + now.toLocaleDateString();
+	here.innerHTML += "<br>" + now.toLocaleTimeString();
+}
+function f_btn4(){
+	var arr1=[10, 20, 30];
+	var arr2 = new Array(10, 20, 30);
+	arr1.push(99);
+	arr2.push(88);
+	here.innerHTML = arr1 + " " + arr1.length;
+	here.innerHTML += "<br>" + arr2 + " " + arr2.length;
+}
+
+function f_btn5(){
+	var arr1 = [1,2,3];
+	var arr2 = ["자바", "자바스크립트"];
+	var arr3 = arr1.concat(arr2);
+	arr3.push("뒤에추가");
+	arr3.unshift("앞에추가")
+	here.innerHTML = arr3.join("*");
+	arr3.pop();arr3.pop();
+	arr3.shift();
+	here.innerHTML += "<br>" +  arr3;
+	
+	
+	var arr4 = [100, 200, 300, 400, 500];
+	var arr5 = arr4.splice(2, 2, "추가");//자를 시작점과 갯수를 넣음, 그리고 잘린 위치에 추가할 내용을 넣음
+	here.innerHTML += "<br>splice잘린 원본" + arr4;
+	here.innerHTML += "<br>" + "잘린 부분" + arr5;
+	
+	
+	var arr4 = [100, 200, 300, 400, 500];
+	var arr5 = arr4.slice(2, 5);//2번쨰부터 4번째까지(시작위치(이상), 끝위치(미만))
+	here.innerHTML += "<br>slice잘린 원본" + arr4;
+	here.innerHTML += "<br>" + "잘린 부분" + arr5;
+}
+
+function f_btn6(){
+	here.innerHTML = Math.PI;
+	var arr = [];
+	aa : while(arr.length < 6){
+		var su = Math.ceil(Math.random()*45);
+		/*for(let i=0; i < arr.length; i++){
+			if(su == arr[i]) continue aa;
+		}
+		arr.push(su);*/
+		if(!arr.includes(su)) arr.push(su);
+	}
+	
+	here.innerHTML += "<br>" + arr;
+    //1~45사이의 정수 6개 뽑기(중복없이)
+}
+
+function call(){
+	//onsubmit : default이벤트이다. 무조건 서버로 간다. return값으로 취소가능
+	alert("서버에 전송되기 전");
+	var userid = document.querySelector("#userid").value;
+	if(userid === 'admin'){
+		
+	}else{
+		//default이벤트를 취소하고자 한다. 서버전송 막기
+		return false;
+	}
+}
+</script>
+</head>
+<body ><!--(이벤트 처리기 직접 연결, 이벤트핸들러 혹은 이벤트리스너라고도 한다.) 실제 이벤트 발생 시 어떠한 동작을 한다 할 때는 'on'을 붙여줌-->
+<h1>이벤트에 대하여..</h1>
+<button >이벤트이름/이벤트리스너(핸들러)</button>
+<button >이벤트연습</button>
+<button >내장객체</button>
+<button >내장객체 배열</button>
+<button >내장객체 concat,자르기</button>
+<button >내장객체 math</button>
+<hr>
+<form action="jstest.jsp" onsubmit="return call();"><!-- ""일 경우 현재페이지를 다시 보여줌, 서버에 전송하고자 할 때는 다른 주소명을 적어주자., return false의 경우 절대 다음으로 못 감, true일 경우는 무조건 감 -->
+	아이디 : <input id="userid">
+	<input type = "submit" value="서버에 전송">
+	<button>서버에 전송2(submit과 같음)</button>
+	<input type="button" value="form내의button(submit과 다름)" onclic="alert('button')">
+</form>
+<hr>
+<div id="here">여기</div> <!-- id=here가 먼저 선행되어야 innerHTML을 쓸 수 있다. -->
+
+</body>
+</html>

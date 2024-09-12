@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script>
+window.onload = init;//고전방식
+function init(){
+	var nodeList = document.querySelectorAll("ul li");
+	var output = "";
+	for(let index = 0; index<nodeList.length; index++){
+		console.log(nodeList[index]);
+		output += nodeList[index].innerText;
+	}
+	here.innerHTML = output;
+	
+	var tnode = document.createTextNode("자바스크립트");
+	var enode = document.createElement("h1");//<h1></h1>
+	enode.appendChild(tnode); //<h1>자바스크립트</h1> <- 가장 기본적인 방법
+	here.appendChild(enode);
+	
+	here.innerHTML += "<h1>자바스크립트2</h1>"; //이게 더 편한 방법
+	here.innerHTML += "<img src='../17/images/coffee-blue.jpg'>";
+}
+
+function call(){
+	var obj = document.querySelector("div img");
+	obj.parentNode.removeChild(obj);
+	
+	
+	var obj2 = document.querySelector("ul");
+	obj2.parentNode.removeChild(obj2);
+	//body 아래의 ul이 담긴 obj2를 없앰
+}
+</script>
+</head>
+<body>
+<h1>DOM연습</h1>
+<ul>
+<li>HTML</li>
+<li>CSS</li>
+<li>JavaScript</li>
+</ul>
+<hr>
+<button onclick="call()">이미지삭제</button>
+<div id = "here">여기</div>
+</body>
+</html>

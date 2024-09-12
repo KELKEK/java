@@ -1,0 +1,5 @@
+127.0.0.1 - - [17/Jun/2024:16:56:09 +0900] "GET / HTTP/1.1" 404 807
+0:0:0:0:0:0:0:1 - - [17/Jun/2024:16:56:09 +0900] "GET /webproject/02/login_seller.html HTTP/1.1" 200 6034
+0:0:0:0:0:0:0:1 - - [17/Jun/2024:16:56:18 +0900] "GET /webproject/02/customer_login.html HTTP/1.1" 404 848
+0:0:0:0:0:0:0:1 - - [17/Jun/2024:16:58:51 +0900] "GET /webproject/02/signup.html HTTP/1.1" 200 7578
+0:0:0:0:0:0:0:1 - - [17/Jun/2024:16:59:11 +0900] "GET /webproject/02/signup.html HTTP/1.1" 200 7578

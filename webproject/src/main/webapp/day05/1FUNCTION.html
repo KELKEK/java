@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body onload="alert('load완료')"><!--(이벤트 처리기 직접 연결, 이벤트핸들러 혹은 이벤트리스너라고도 한다.) 실제 이벤트 발생 시 어떠한 동작을 한다 할 때는 'on'을 붙여줌-->
+<h1>복습</h1>
+<button onclick="f1()">변수의 범위</button>
+<button onclick="f2()">변수의 범위</button>
+<button onclick="f3()">데이터 타입</button>
+<button onclick="f4()">함수</button>
+<button onclick="f5()">화살표 함수</button>
+<hr>
+<div id="here">여기</div> <!-- id=here가 먼저 선행되어야 innerHTML을 쓸 수 있다. -->
+<script>
+console.log(v1);//not define이 아니고 undefined이다.(호이스팅 -> var, function()을 맨 위로 올린다.(값할당은 안됨, 존재만 있다는걸 인식))
+//console.log(v2);//not define, 오류로 프로그램 중단
+var v1 = 100;//전역, 제거 불가
+v2 = 200;//전역, 제거 가능
+function f1(){
+	var v3 = 300;//지역,
+	v4 = 400;//전역, f1이 수행되어야 한다
+	output = "금요일";
+	document.getElementById("here").innerHTML = output + (v1+v2+v3+v4);
+}
+//document.getElementById("here").innerHTML = output + (v1+v2+v3+v4); <-여기서는 v3이 정의되지 않아 에러남
+</script>
+
+<script>
+var a = 100;
+function f2(){
+	var b = 200;
+	let d = 400;
+	{
+		var c = 300;//얘는 function 안에서는 다 사용 가능
+		let e = 500;//얘는 block 밖에서 사용 불가능
+	}
+	here.innerHTML = a+b+c+d;
+}
+</script>
+
+<script>
+function f3(){
+	var a;
+	here.innerHTML += "<br>" + a + "==>" + typeof(a);
+	a = 100.5;
+	here.innerHTML += "<br>" + a + "==>" + typeof(a);
+	a="신한";
+	here.innerHTML += "<br>" + a + "==>" + typeof(a);
+	a = 10 > 20;
+	here.innerHTML += "<br>" + a + "==>" + typeof(a);
+	a=[1, 2, 3, "sddaㅁ", true, {}, function(){}, []];
+	here.innerHTML += "<br>" + a + "==>" + typeof(a);
+	a={};
+	here.innerHTML += "<br>" + a + "==>" + typeof(a);
+	a=function(){};
+	here.innerHTML += "<br>" + a + "==>" + typeof(a);
+}
+</script>
+
+<script>
+//1, 선언적함수(이름있는 함수)
+function f4(){
+	//2, 내부함수
+	call();
+	function call(){
+		here.innerHTML += "<hr>" + "내부함수";
+	}
+	
+	//3, 익명함수
+	//aa(); 여기서는 호출 불가
+	var aa = function(){
+		here.innerHTML += "<hr>" + "익명함수";
+	}
+	aa();
+	
+	//4, 즉시실행함수(만들자마자 실행)
+	(function(){
+		here.innerHTML += "<hr>" + " 즉시실행함수";
+	})();
+}
+</script>
+
+<script>
+//5, 화살표 함수
+function f5(){
+	var aa = ()=> here.innerHTML += "<hr>" + "화살표함수";//함수 컨텐츠가 2줄 이상일 경우는 컨텐츠 바깥으로 중괄호 포함해준다.
+	aa();
+
+	var bb = (a,b)=>a+b; //자바는 람다식에서 화살표 ->, 여기는 =>
+	here.innerHTML += "<br>" + bb(10,20);
+	
+	var cc = (a,b)=>{
+		here.innerHTML += "<hr>" + "화살표함수 argument와 return";
+		//document.getElementById("here").innerHTML += "<hr>" + "화살표함수 argument와 return";
+		return a+b;
+	}
+	var result = cc(10, 20);
+	here.innerHTML += "<br>" + result;
+}
+
+</script>
+</body>
+</html>

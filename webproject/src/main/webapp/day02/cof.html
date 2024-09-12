@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+h1{
+	background-color : yellow;
+	text-align : center;
+	color : red;
+}
+</style>
+</head>
+<body>
+<h1>COFFEE 선호도를 입력해주세요</h1>
+<form action = "inputfavor.jsp" method = "post">
+고객 ID입력<input autofocus name = "customer_id" required ><br>
+<hr>
+<h2>종류별 선호도</h2>
+1.가격  
+<input name = "price" type="range" value = "0" min="0" max="9" step ="1"/><br>
+<!-- 묶어서 내보기 -->
+
+2.카페인양
+<input name = "caffeine" type="range" value = "0" min="0" max="9" step ="1"/><br>
+
+3. 당분
+<input name = "sugar" type="range" value = "0" min="0" max="9" step ="1"/><br>
+
+4, 원두품질
+<input name = "quality" type="range" value = "0" min="0" max="9" step ="1"/><br>
+
+5, 거리
+<input name = "distance" type="range" value = "0" min="0" max="9" step ="1"/><br>
+
+
+<input type="submit" value="전송">
+</form>
+</body>
+</html>

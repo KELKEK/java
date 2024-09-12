@@ -1,0 +1,157 @@
+	
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+#here {
+	border: 1px solid gray;
+}
+
+.myli {
+	background-color: orange;
+	border: 5px dotted blue;
+}
+</style>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script>
+	//배열
+	var arr = [ "HTML5", "CSS3", "JavaScript", "jQuery" ];
+	//$(); //로드가 끝나면이라는 뜻
+	$(function() {
+		//window가 load되고 나서 수행된다.
+		var output = "<ul>"
+		$.each(arr, function(index, item) {
+			output += "<li>" + item + "</li>"
+		});
+
+		//이미 이렇게 h1만 써줘도 querySelectorAll과 같은 역할을 한다.
+		$("h1").each(function(index, data) {
+			output += `<li>${index}--${$(data).text()}</li>`; //$(data).text()(jQuery방식), ${}백틱방식
+		});//loop를 돎
+		output += "</ul>";
+		$("#here").html(output);
+
+		//$("#btn1").click(function(){});
+		$("#btn1").on("click", function() {
+			$("li").css("color", "red");
+			$("li").addClass("myli");
+		});
+		$("#btn2").on("click", function() {
+			$("li").css("color", "black");
+			$("li").removeClass("myli");
+		});
+		//jQuery대산에 $를 사용했는데... 사용하지 않음이라고 설정 =>이후는 다시 jQuery라 써야한다.
+		//$.noConflict();
+
+		$("#btn3").on("click", function() {
+			var obj1 = {
+				name : "홍길동",
+				age : 20
+			};
+			var obj2 = {
+				주소 : "마포구 연남동",
+				phone : "010-7896-4563"
+			};
+			$.extend(obj1, obj2, {
+				전공 : "컴퓨터공학",
+				취미 : "게임"
+			});
+
+			$.each(obj1, function(key, data) {
+				console.log(key + "=>" + data);
+			});
+		});
+
+		$("#btn4").on("click", function() {
+			//$("h1:even").css("backgroundColor", "orange");
+			//$("h1").filter(":odd").css("backgroundColor", "green");
+			$("h1").filter(function(index, data) { //단일조건보다 함수를 표현하여 복잡한 조건으로 필터링할 때 유리하다.
+				//console.log(index, data);
+				// 			if($(data).text().indexOf("2") >= 0) return true;
+				// 			return false;
+				return $(data).text().includes("2");
+			}).css("backgroundColor", "orange");
+
+		});
+
+		$("#btn5").on(
+				"click",
+				function() {
+					$("h1").css("border", "1px solid gray").filter(":even")
+							.css("backgroundColor", "orange").end().filter(
+									":odd").css("color", "blue");//짝수 중에 홀수가 되어버림
+				});
+
+		$("#btn6").on(
+				"click",
+				function() {
+					$("h1").first().css("color", "blue");
+					$("h1").eq(1).css("color", "green");
+					$("h1").eq(2).css("color", "red");
+					$("h1").last().css("color", "pink");
+					$("h1").eq(-1).css("background-color", "green");
+					//음수는 뒤에서부터
+				});
+		
+		$("#btn7").on("click", function(){
+			var result = $("#here2").children().is("p");
+			console.log(result);
+		});
+		
+		$("#btn8").on("click", function(){
+			var xmlStr = "\
+						<friends>\
+						<friend>\
+						<name>홍길동</name>\
+						<age>20</age>\
+						</friend>		  \
+						<friend>\
+						<name>홍길동2</name>\
+						<age>30</age>\
+						</friend>		  \
+						</friends>		  \
+						";
+			var obj = $.parseXML(xmlStr);
+			$(obj).find("friend").each(function(index, item){
+				console.log($(item).find("name").text());
+			});
+		});
+		
+		$("#btn9").on("click", function(){
+			$(this).parent().css({"border" : "5px dotted green", "padding" : "20px"});//1개일 때는 "padding", "20px"이런식으로 쓰이고 중괄호도 안쓴다.
+			$(this).text("비활성화");
+			$(this).parent().find("span").text("활성화");
+		})
+	});
+</script>
+</head>
+<body>
+	<button id="btn1">li에 css적용</button>
+	<button id="btn2">li에 css삭제</button>
+	<button id="btn3">객체확장(extend)</button>
+	<button id="btn4">filter</button>
+	<button id="btn5">end(1단계 올리기)</button>
+	<button id="btn6">eq(), first(), last()</button>
+	<button id="btn7">is()</button>
+	<button id="btn8">parseXML</button>
+	<div>
+	<span>비활성화</span>
+	<button id="btn9">활성화하기</button>
+	</div>
+	<h1>제목1</h1>
+	<h1>제목2</h1>
+	<h1>제목3</h1>
+	<h1>제목4</h1>
+	<h1>제목5</h1>
+	<div id="here">
+	</div>
+	<div id="here2">
+	<p class="aa">pppppppppppp</p>
+	</div>
+	
+	
+</body>
+</html>

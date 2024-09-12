@@ -1,0 +1,10 @@
+127.0.0.1 - - [03/Jul/2024:20:09:50 +0900] "GET / HTTP/1.1" 404 807
+0:0:0:0:0:0:0:1 - - [03/Jul/2024:20:10:08 +0900] "GET /webproject/03/error.html HTTP/1.1" 200 1703
+0:0:0:0:0:0:0:1 - - [03/Jul/2024:20:10:08 +0900] "GET /webproject/03/$%7Bpath%7D/resources/css/header_footer.css HTTP/1.1" 404 884
+0:0:0:0:0:0:0:1 - - [03/Jul/2024:20:10:08 +0900] "GET /webproject/images/logo_main.png HTTP/1.1" 404 846
+0:0:0:0:0:0:0:1 - - [03/Jul/2024:20:11:08 +0900] "GET /webproject/03/error.html HTTP/1.1" 200 1674
+0:0:0:0:0:0:0:1 - - [03/Jul/2024:20:11:08 +0900] "GET /webproject/03/$%7Bpath%7D/resources/css/header_footer.css HTTP/1.1" 404 884
+0:0:0:0:0:0:0:1 - - [03/Jul/2024:20:11:08 +0900] "GET /webproject/images/logo_main.png HTTP/1.1" 404 846
+0:0:0:0:0:0:0:1 - - [03/Jul/2024:20:11:20 +0900] "GET /webproject/03/error.html HTTP/1.1" 200 1671
+0:0:0:0:0:0:0:1 - - [03/Jul/2024:20:11:20 +0900] "GET /webproject/03/$%7Bpath%7D/resources/css/header_footer.css HTTP/1.1" 404 884
+0:0:0:0:0:0:0:1 - - [03/Jul/2024:20:11:20 +0900] "GET /webproject/03/images/logo_main.png HTTP/1.1" 200 61021

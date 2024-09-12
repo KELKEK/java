@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>CSS float 속성</title>
+  <style>
+    img.a {
+      float:left;  
+      margin-right : 20px;
+    }
+    img.b {
+      float:right;  
+      margin-left : 20px;
+    }
+    .c{
+      clear : both;
+    }
+    nav ul {
+    /* 부모님인 nav, ul는 생략 가능*/
+      list-style:none;   
+    }
+    nav ul li {
+      float : right;
+      background-color : black;
+      display:inline-block;      
+      padding:20px;
+      /*margin:0 20px;*/
+      border:3px solid gray;
+      font-size : 20px;
+      color : orange;
+    }
+    li:nth-child(1){
+      border-top-right-radius : 25%;
+      border-bottom-right-radius : 25%;
+    }
+    li:nth-child(4){
+      border-top-left-radius : 25%;
+      border-bottom-left-radius : 25%;
+    }
+    a{
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+  <img class="a" src="images/tree.png">
+  <img class="b" src="images/tree.png">
+   <p>Ex et adipisicing voluptate aliqua cupidatat nulla. Laboris est sint sit aliqua enim. Aute Lorem eu sint aute sunt proident. Do culpa consectetur elit duis laboris reprehenderit incididunt nulla. Irure exercitation tempor aliqua laboris cupidatat anim in non officia aliquip excepteur fugiat labore.</p>
+   <p>Lorem ipsum reprehenderit adipisicing exercitation enim velit veniam incididunt sit consectetur elit exercitation. Commodo veniam sit quis nisi ea. Ipsum do aliqua nostrud laboris elit duis adipisicing id Lorem qui. Labore dolor ipsum enim incididunt. Velit qui cillum sunt labore incididunt duis aute Lorem nulla et. Sint commodo aute amet laboris ullamco exercitation Lorem dolore veniam ut reprehenderit incididunt. Laborum nulla eiusmod cillum irure anim aute.</p>
+   <p class="c">Excepteur voluptate ad irure ipsum duis. Deserunt cupidatat commodo proident eu mollit cillum commodo quis quis et ad. Incididunt adipisicing enim laboris voluptate.</p>
+<nav>
+     <ul>
+      <li><a href="../day01/jsp/empAll.jsp">직원조회</a></li><li>직원입력</li><li>부서조회</li><li>부서입력</li>
+     </ul>
+   </nav>
+
+</body>
+</html>

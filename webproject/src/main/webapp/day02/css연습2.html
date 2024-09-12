@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Gugi&family=Nanum+Brush+Script&display=swap" rel="stylesheet">
+<style>
+/*
+0, !important
+1. inline 우선(예시의 파랑)
+2. (!impoertant생략)internal(예시의 빨강)
+3. id
+4, 클래스
+5, 타입
+*/
+h1{
+	color : rgba(255, 0, 0, 0.5) !important;
+	display: inline;
+	font-size : 50px;
+}
+h2{
+	border : 3px dotted green;
+}
+#my2{
+	border : 3px dotted hotpink;
+}
+.my3{
+	border : 3px dotted orange;
+}
+h2{
+	border : 3px dotted blue;
+}
+div{
+	color : #ff2299;
+	border : 1px solid green;
+}
+*{
+	font-family: "Gugi", sans-serif;
+}
+</style>
+</head>
+<body>
+<h1 style = "color:blue;">css 적용순서</h1>
+<h2 id = "my2" class = "my3">h2입니다.</h2>
+<div>
+	<h3>h3</h3>
+	<h4>h4</h4>
+	<p>p1</p>
+	<p>p2</p>
+	<p>p3</p>
+	<p>p4</p>
+</div>
+</body>
+</html>

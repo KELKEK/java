@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<h1>로그인 정보를 입력하세요(입력정보->서버에 전송)</h1>
+<form action="./jsp/logincheck.jsp" method="get">
+<fieldset>
+<legend>로그인정보</legend>
+<label>아이디 : <input type="text" name="userid" required></label>
+<label for = "userpass">패스워드 :</label>
+<input type = "text" name = "userpass" id="userpass" required>
+<!-- required는 모든 칸 입력하지 않을 시 입력해달라는 문구를 띄우며 다음단계로 넘기지 않게 한다. -->
+
+</fieldset>
+<!-- method : 전송방식 get은 주소창에 전송되는 data가 display된다. -->
+<!-- post는 주소창에 전송되는 data가 display되지 않고 요청문서에 body숨어서 간다. -->
+<!-- 서버에 전송하라는 의미 form의 action으로 이동 -->
+<fieldset>
+<legend>다른 서비스</legend>
+<input>
+</fieldset>
+<input type="submit" value="로그인하기">
+<input type="reset" value="지우기">
+</form>
+</body>
+</html>
+
+<!-- http://localhost:9090/webproject/day01/logincheck.jsp?userid=asdasdasd&userpass=asdasdad -->

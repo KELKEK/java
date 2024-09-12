@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script>
+//윈도우가 전부 로드되면 init함수 발생
+	window.onload = init;//얘도 콜백함수인 셈 (다른 함수가 함수를 부름, 함수를 매개변수로 받는다.)
+	function init() {
+		document.querySelector("#btn1").addEventListener("click", f1);
+		document.querySelector("#btn2").addEventListener("click", f2);
+		document.querySelector("#btn3").addEventListener("click", f3);
+		document.querySelector("#btn4").addEventListener("click", f4);
+		document.querySelector("#btn5").addEventListener("click", f5);
+		document.querySelector("#btn6").addEventListener("click", f6);
+		//처음부터 실행할거면 f6()으로 넣어야 한다.
+		document.querySelector("#btn7").addEventListener("click", f7);
+		document.querySelector("#btn8").addEventListener("click", f8);
+		document.querySelector("#btn9").addEventListener("click", f9);
+		document.querySelector("#btn10").addEventListener("click", f10);
+		document.querySelector("#btn11").addEventListener("click", f11);
+		document.querySelector("#btn12").addEventListener("click", f12);
+		document.querySelector("#btn13").addEventListener("click", f13);
+		document.querySelector("#btn14").addEventListener("click", f14);
+		document.querySelector("#btn15").addEventListener("click", f15);
+		document.querySelector("#btn16").addEventListener("click", f16);
+	}
+	//선언적 함수(함수 이름을 부여함)
+	function f1() {
+		// 익명함수(할당한 다음에 호출할 수 있음)
+		var call = function(a, b) {
+			document.querySelector("#here").innerHTML = "<h1>익명함수" + (a + b)
+					+ "</h1>";
+		};
+		call(1, 2);
+		console.log(call);
+	}
+	function f2() {
+		(function(a, b) {
+			document.querySelector("#here").innerHTML = "<h1>익명함수(즉시실행)"
+					+ (a + b) + "</h1>";
+		})(100, 200);//즉시실행함수
+	}
+	function f3() {
+		document.querySelector("#here").innerHTML = sumAll(1, 2, 3);
+		//argument 개수는 일치하지 않아도 무관
+		//NaN(Not a Number) <- 인자가 남는건 괜찮지만 모자라면 값 계산이 안되므로 NaN이 뜸
+	}
+	// 	function sumAll(a, b){
+	// 		return a + b;
+	// 	}
+	function sumAll() {
+		var total = 0;
+		for (let i = 0; i < arguments.length; i++) {
+			total += arguments[i];
+		}
+		return total;
+	}
+	//같은 이름의 함수가 있다면 나중것이 적용된다.
+
+	function f4() {
+		var width = 3;
+		var height = 4;
+		var result = Math.sqrt(sqrt(width)+sqrt(height));
+		document.querySelector("#here").innerHTML = result;
+		
+		//내부함수
+		function sqrt(a){
+			return a*a;
+		}
+	}
+
+	function sqrt(a, b, c){
+		return a;
+		//argument 갯수와 무관하게 함수 이름이 같으면 뒤에게 적용
+	}
+	
+	function f5(){
+		var call2 = function(){
+			document.querySelector("#here").innerHTML = "callback함수";
+		};
+		call3(call2);
+	}
+	//callback함수 : 매개변수로 전달되는 함수, 받은쪽에서 호출한다.
+	function call3(){
+		f();
+	}
+	
+	
+	function f6(){
+		//setTimeout(call6, 1000); //1초 후 call6이 호출된다.(call6()이렇게 쓰면 우리가 쓴게 아니고 그냥 호출하는걸로 됨)
+		timer1 = setInterval(call6, 1000); //1초 후 call6이 호출된다.(call6()이렇게 쓰면 우리가 쓴게 아니고 그냥 호출하는걸로 됨)
+	}
+	function call6(){
+		document.querySelector("#here").innerHTML = new Date();
+	}
+	
+	function f7(){
+		clearInterval(timer1);
+	}
+	
+	function f8(){
+		//지역변수는 지역을 벗어나면 소멸된다. 그러나 return 함수에 지역변수가 들어있으면 계속 사용가능 (클로저라고 한다.)
+		//클로저 : 규칙위반
+		var result = call8(); //함수를 리턴
+		document.querySelector("#here").innerHTML = result();//함수를 호출
+	}
+	function call8(){
+		
+		var i = 100;//이 지역에서만 쓰는 변수
+		var f = function(){i++;  return i;};
+		return f; 
+		//i++한 결과를 리턴하므로 return에 지역변수가 존재하는 꼴
+	}
+// 	var counter = 0;
+	var result9 = add(0);
+	var result10 = add(100);
+	
+	function f9(){
+
+		document.querySelector("#here").innerHTML = result9();
+	}
+	function add(counter){
+// 		var counter = 0;
+		return function(){counter++; return counter;};
+	}
+	
+	
+	function f10(){
+		
+		for(var i = 0; i < 3; i++){
+			//setTimeout(function(){alert(i);}, 10);
+			//i가 3일 때 loop가 빠진다.
+			//var i = 0은 그 함수 전지역에서 쓰므로 3까지 for문을 돌린 후에 alert함
+			//let는 이 안에서만의 역역
+			
+			(function(arg){
+				setTimeout(function(){alert(arg);}, 1000);// 1초가 지나면 수행
+			})(i);
+			
+			//해결1...let
+			//해결2...var로 두고 i를 매개변수로 넘기고 즉시실행함수
+			//해결3...ES6 forEach
+		}
+		
+	}
+	
+	function f11(){
+		var arr = [100,101,102];
+		arr.forEach(function(element, index, array){
+			alert(element + "=>" + index);
+		});
+	}
+	
+	function f12(){
+		var url = "http://localhost:9090/webproject/day06/인코딩연습.jsp?name=홍길동";
+		here.innerHTML = encodeURIComponent(url);
+		here.innerHTML += "<hr>" + decodeURIComponent(here.innerHTML);
+	}
+	
+	function f13(){
+		var s = "a=10;b=20;c=a+b;alert(c)";
+		eval(s)
+	}
+	
+	function f14(){
+		var su1 = document.querySelector("#su1").value;
+		var su2 = document.querySelector("#su2").value;
+		var sel = document.querySelector("#sel").value;
+		console.log(su1 + sel + su2);
+		result.value = eval(su1 + sel + su2);
+	}
+	
+	function f15(){
+		//숫자와 숫자가 아닌 것을 연산한 경우 return값으로 NaN이 나옴
+		//parseInt를 쓰면 앞부분 숫자만 가져운다., Number는 숫자형 문자가 아니면 불가
+		//var su1 = Number(document.querySelector("#su1").value) + 200;
+		var su1 = parseInt(document.querySelector("#su1").value) + 200;
+		here.innerHTML = su1;
+	}
+	
+	function f16(){
+		call16(100, 5);
+	}
+	function call16(a, b=200, c=300){
+		//var second = b || 200;
+// 		var second = b == undefined?200:b;
+// 		var third = c || 300;
+		here.innerHTML = a + b + c;
+	}
+</script>
+
+</head>
+<body>
+	<h1>Function</h1>
+	<button id="btn1">익명함수</button>
+	<button id="btn2">즉시실행함수</button>
+	<button id="btn3">가변인자</button>
+	<button id="btn4">내부함수</button>
+	<button id="btn5">콜백함수</button>
+	<button id="btn6">콜백함수(시계)</button>
+	<button id="btn7">콜백함수(시계멈추기)</button>
+	<button id="btn8">함수리턴(클로저 사용)</button>
+	<button id="btn9">카운터(클로저 이용)</button>
+	<button id="btn10">클로저 이용</button>
+	<button id="btn11">클로저 이용(ES6기능)</button>
+	<button id="btn12">인코딩 디코딩</button>
+	<button id="btn13">eval()함수</button>
+	<hr>
+	<input type="number" id="su1">
+	<select id="sel">
+	<option value="+">더하기</option>
+	<option value="-">빼기</option>
+	<option value="/">나누기</option>
+	<option value="*">곱하기</option>
+	</select>
+	<input type="number" id="su2">
+	<button id="btn14">=</button>
+	<input type="number" readonly="readonly" id="result">
+	<hr>
+	<button id="btn15">숫자변환함수</button>
+	<button id="btn16">매개변수의디폴트값</button>
+	<hr>
+	<div id="here">여기</div>
+</body>
+</html>

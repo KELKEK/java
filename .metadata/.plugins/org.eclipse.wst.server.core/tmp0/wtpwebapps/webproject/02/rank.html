@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Popup Example</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        .popup-button {
+            margin: 20px;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .popup-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 999;
+        }
+
+        .popup-content {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            width: 80%;
+            max-width: 1000px;
+            height: 80%;
+            overflow-y: auto;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .popup-content .close-button {
+            float: right;
+            font-size: 24px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .popup-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        .popup-table th,
+        .popup-table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: center;
+        }
+
+        .popup-table th {
+            background-color: #f2f2f2;
+        }
+
+        .popup-table .header {
+            font-size: 18px;
+            font-weight: bold;
+            padding: 10px;
+        }
+
+        .accordion {
+            background-color: #f2f2f2;
+            color: #444;
+            cursor: pointer;
+            padding: 18px;
+            width: 100%;
+            border: none;
+            text-align: left;
+            outline: none;
+            font-size: 18px;
+            transition: 0.4s;
+        }
+
+        .active, .accordion:hover {
+            background-color: #ddd;
+        }
+
+        .panel {
+            padding: 0 18px;
+            display: none;
+            background-color: white;
+            overflow: hidden;
+        }
+    </style>
+</head>
+
+<body>
+    <button class="popup-button" onclick="openPopup()">Show Popup</button>
+
+    <div id="popup-overlay" class="popup-overlay">
+        <div class="popup-content">
+            <span class="close-button" onclick="closePopup()">&times;</span>
+            <h2>상생패션 멤버십 등급 혜택 안내</h2>
+            <table class="popup-table">
+                <tr>
+                    <th>등급</th>
+                    <th>DIAMOND</th>
+                    <th>PLATINUM</th>
+                    <th>GOLD</th>
+                    <th>SILVER</th>
+                    <th>BRONZE</th>
+                    <th>FAMILY</th>
+                </tr>
+                <tr>
+                    <td class="header">등급 선정 기준</td>
+                    <td>3,000만원 이상</td>
+                    <td>1,000만원 이상</td>
+                    <td>300만원 이상</td>
+                    <td>100만원 이상</td>
+                    <td>50만원 이상</td>
+                    <td>1회 이상 구매</td>
+                </tr>
+                <tr>
+                    <td class="header">멤버십 포인트적립</td>
+                    <td>포인트<br>기프트포인트 50만</td>
+                    <td>포인트<br>기프트포인트 30만</td>
+                    <td>포인트<br>기프트포인트 10만</td>
+                    <td>포인트<br>기프트포인트 5만</td>
+                    <td>포인트<br>기프트포인트 2만</td>
+                    <td>포인트<br>기프트포인트 1만</td>
+                </tr>
+            </table>
+            <button class="accordion">등급 산정 기준</button>
+            <div class="panel">
+                <p>등급 산정 기준 내용</p>
+            </div>
+            <button class="accordion">멤버십 포인트 적립/사용 안내</button>
+            <div class="panel">
+                <p>멤버십 포인트 적립/사용 안내 내용</p>
+            </div>
+            <button class="accordion">멤버십 혜택 유의사항</button>
+            <div class="panel">
+                <p>멤버십 혜택 유의사항 내용</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function openPopup() {
+            document.getElementById('popup-overlay').style.display = 'flex';
+        }
+
+        function closePopup() {
+            document.getElementById('popup-overlay').style.display = 'none';
+        }
+
+        var acc = document.getElementsByClassName("accordion");
+        var i;
+
+        for (i = 0; i < acc.length; i++) {
+            acc[i].addEventListener("click", function() {
+                this.classList.toggle("active");
+                var panel = this.nextElementSibling;
+                if (panel.style.display === "block") {
+                    panel.style.display = "none";
+                } else {
+                    panel.style.display = "block";
+                }
+            });
+        }
+    </script>
+</body>
+
+</html>

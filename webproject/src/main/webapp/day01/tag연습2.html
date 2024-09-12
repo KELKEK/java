@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+/*HTML 문서 내에서 디자인(internal stylesheet)*/
+table, th, td{
+border: 1px solid #ccc;
+border-collapse : separate;
+}
+</style>
+</head>
+<body>
+<h1>목록보여주기</h1>
+<ol>
+<li>HTML5</li>
+<li>CSS3</li>
+<li>JavaScript</li>
+<li>jQuery</li>
+</ol>
+<ol type="A"> <!-- 대문자ABC순서 -->
+<li>HTML5</li>
+<li>CSS3</li>
+<li>JavaScript</li>
+<li>jQuery</li>
+</ol>
+<ul>
+<li>HTML5</li>
+<li>CSS3</li>
+<li>JavaScript</li>
+<li>jQuery</li>
+</ul>
+<dl>
+<dt>FrontEnd</dt>
+<dd>Html5</dd>
+<dd>CSS3</dd>
+<dd>JavaScript</dd>
+<dd>jQuery</dd>
+<dt>BackEnd</dt>
+<dd>DB</dd>
+<dd>Java</dd>
+<dd>JspServlet</dd>
+<dd>SpringFrameWork</dd>
+<dd>SpringBoot</dd>
+</dl>
+<table border="1">
+<caption>HTML학습</caption>
+<thead>
+<tr>
+<th>이름</th><th>나이</th><th>전공</th><th>취미</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td rowspan="2">Html5</td>
+<td>CSS3</td>
+<td>JavaScript</td>
+<td rowspan = "3">jQuery</td>
+</tr>
+<tr>
+<td colspan = "2">CSS3</td>
+</tr><!-- 같은 것이 있다면 다음과 같은 방식으로 묶을 수 있다. 단 나머지 항목도 제거해주어야 한다. -->
+<tr>
+<td>Html5</td>
+<td>CSS3</td>
+<td>JavaScript</td>
+</tr>
+</tbody>
+</table>
+<table>
+<caption>요안도라 객실</caption>
+<thead>
+<tr>
+<th>방 이름</th><th>대상</th><th>크기</th><th>가격</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>유채방</td>
+<td>여성 도미토리</td>
+<td rowspan = "3">4인실</td>
+<td rowspan = "4">1인 20,000원</td>
+</tr>
+<tr>
+<td rowspan = "2">동백방</td>
+<td>동성 도미토리</td>
+</tr>
+<tr>
+<td>가족 1팀</td>
+</tr>
+<tr>
+<td>천혜향방</td>
+<td>-</td>
+<td>2인실</td>
+</tr>
+</tbody>
+<tfoot>
+<tr>
+<td colspan = "4">바깥채 전체를 랜트합니다</td>
+</tr>
+</tfoot>
+</table>
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<meta charset="UTF-8">
+	<title>박스모델</title>
+	<style>
+	/*div도 a도 똑같은 스타일대로 해달라*/
+    div, a, p {
+      border:2px solid #000;
+      margin-bottom: 20px;
+    }
+	.box1, .box3 {
+			width:400px;
+			height:100px;
+		}
+    .box2, .box4 {
+      width:50%;/*부모 요소의 50%*/
+      height:100px;/* px는 고정크기 */
+    }
+    a{
+      display : block;
+      width : 300px;
+    }
+    p{
+      width : 50%;
+    }
+    /*width 속성은 block요소에만 사용*/
+	</style>
+</head>
+<body>
+  <div class="box1">box1</div>
+  <div class="box2">box2</div>
+  <a href="block.html">block요소 연습</a>
+  <div class="box3">
+  	<p>pppppppppppppppppppp</p>
+  </div>
+   <div class="box4">
+  	<p>pppppppppppppppppppp</p>
+  </div>
+</body>
+</html>

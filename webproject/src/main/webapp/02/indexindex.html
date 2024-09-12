@@ -1,0 +1,393 @@
+기존 HTML과 CSS 코드에 JavaScript를 추가하여 특정 리스트 항목을 공지로 선택하거나 취소할 수 있게 하겠습니다. 공지로 선택된 항목은 목록의 맨 위로 이동하고 강조됩니다.
+
+다음은 코드입니다:
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Header</title>
+<!-- css -->
+<link rel="stylesheet" href="../css/style.css">
+<link rel="stylesheet" href="../css/header_footer.css">
+<link rel="stylesheet" href="../css/common.css">
+<style>
+body {
+	font-family: Arial, sans-serif;
+}
+
+.inner {
+	width: 80%;
+	margin: 0 auto;
+}
+
+h1 {
+	text-align: center;
+	margin-top: 20px;
+	font-size: 24px;
+}
+
+.review-container {
+	margin-top: 40px;
+	display: flex;
+	justify-content: space-between;
+}
+
+.sidebar {
+	width: 110px;
+	margin-right: 20px;
+}
+
+.sidebar ul {
+	list-style: none;
+	padding: 0;
+}
+
+.sidebar ul li {
+	margin: 10px 0;
+}
+
+.sidebar ul li a {
+	text-decoration: none;
+	color: #000;
+	font-size: 18px;
+}
+
+.review-content {
+	flex-grow: 1;
+	margin-left: 20px;
+}
+
+.review-header {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border-bottom: 2px solid #000;
+	padding-bottom: 10px;
+}
+
+.review-header h2 {
+	margin: 0;
+	font-size: 20px;
+	font-weight: bold;
+}
+
+.review-table {
+	width: 100%;
+	margin-top: 20px;
+	border-collapse: collapse;
+}
+
+.review-table th, .review-table td {
+	border: 1px solid #ccc;
+	padding: 10px;
+	text-align: center;
+}
+
+.review-table th {
+	background-color: #6a0dad;
+	color: #fff;
+}
+
+.review-table tr:nth-child(even) {
+	background-color: #f9f9f9;
+}
+
+.accordion-content {
+	display: none;
+	background-color: #f9f9f9;
+}
+
+.accordion-content.active {
+	display: table-row;
+}
+
+.accordion-content td {
+	padding: 10px;
+	border-top: 1px solid #ddd;
+}
+
+.accordion-content p {
+	margin: 0;
+}
+
+.accordion-content img {
+	max-width: 100px;
+	display: block;
+	margin: 0 auto 10px;
+}
+
+.main-content {
+	margin-left: 20px;
+	flex-grow: 1;
+}
+
+.main-content-header {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	border-bottom: 2px solid #000;
+	margin-bottom: 20px;
+}
+
+.main-content-header h2 {
+	font-size: 24px;
+	font-weight: bold;
+	margin: 0;
+}
+
+.main-content-header a {
+	font-size: 24px;
+	font-weight: bold;
+	text-decoration: none;
+	color: #000;
+}
+
+.faq-list {
+	list-style: none;
+	padding: 0;
+}
+
+.faq-list li {
+	margin-bottom: 10px;
+	font-size: 18px;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.faq-list li a {
+	text-decoration: none;
+	color: #000;
+}
+
+hr {
+	margin-bottom: 30px;
+	width: 100%;
+}
+
+.highlighted {
+	background-color: #f0f0f0;
+}
+
+.checkbox {
+	margin-right: 10px;
+}
+</style>
+</head>
+
+<body>
+	<!-- header -->
+	<header>
+		<div class="header_top inner">
+			<div class="leftGnb">
+				<h1 class="logo">
+					<img src="../images/logo_black.png" alt="로고">
+				</h1>
+				<form class="search_form">
+					<label for="search_wrap"> <input name="search_input"
+						type="search" /> <img src="../images/icon_serch.png"
+						alt="돋보기 아이콘" class="search_img" />
+					</label>
+				</form>
+			</div>
+			<div class="rightGnb">
+				<ul>
+					<li><a href="#"> <img src="../images/icon-login.gif"
+							alt="로그인">로그인
+					</a></li>
+					<li><a href="#">회원가입</a></li>
+					<li><a href="#">마이페이지</a></li>
+					<li><a href="#">쇼핑백</a></li>
+				</ul>
+			</div>
+		</div>
+		<div class="header_bottom">
+			<div class="menu_wrap inner">
+				<ul class="left_menu">
+					<li><a href="javascript:#void">여성</a>
+						<div class="dropdown_nav">
+							<ul>
+								<li><a href="#">신상품</a></li>
+								<li><a href="#">전체 상품</a></li>
+								<li><a href="#">아우터</a></li>
+								<li><a href="#">재킷/베스트</a></li>
+								<li><a href="#">니트</a></li>
+								<li><a href="#">셔츠/블라우스</a></li>
+								<li><a href="#">티셔츠</a></li>
+								<li><a href="#">원피스</a></li>
+								<li><a href="#">팬츠</a></li>
+								<li><a href="#">스커트</a></li>
+								<li><a href="#">쥬얼리/시계</a></li>
+							</ul>
+						</div>
+					</li>
+					<li><a href="javascript:#void">남성</a>
+						<div class="dropdown_nav">
+							<ul>
+								<li><a href="#">신상품</a></li>
+								<li><a href="#">전체 상품</a></li>
+								<li><a href="#">아우터</a></li>
+								<li><a href="#">재킷/베스트</a></li>
+								<li><a href="#">니트</a></li>
+								<li><a href="#">셔츠/블라우스</a></li>
+								<li><a href="#">티셔츠</a></li>
+								<li><a href="#">원피스</a></li>
+								<li><a href="#">팬츠</a></li>
+								<li><a href="#">스커트</a></li>
+								<li><a href="#">쥬얼리/시계</a></li>
+							</ul>
+						</div>
+					</li>
+					<li><a href="javascript:#void">키즈</a>
+						<div class="dropdown_nav">
+							<ul>
+								<li><a href="#">신상품</a></li>
+								<li><a href="#">전체 상품</a></li>
+								<li><a href="#">남아</a></li>
+								<li><a href="#">여아</a></li>
+							</ul>
+						</div>
+					</li>
+					<li><a href="javascript:#void">럭셔리</a>
+						<div class="dropdown_nav">
+							<ul>
+								<li><a href="#">신상품</a></li>
+								<li><a href="#">전체 상품</a></li>
+								<li><a href="#">여성의류</a></li>
+								<li><a href="#">여성가방/지갑</a></li>
+								<li><a href="#">여성슈즈</a></li>
+								<li><a href="#">여성 쥬얼리/시계</a></li>
+								<li><a href="#">남성의류</a></li>
+								<li><a href="#">남성가방/지갑</a></li>
+								<li><a href="#">남성슈즈</a></li>
+								<li><a href="#">선글라스/안경테</a></li>
+							</ul>
+						</div>
+					</li>
+					<li><a href="javascript:#void">키즈</a>
+						<div class="dropdown_nav">
+							<ul>
+								<li><a href="#">신상품</a></li>
+								<li><a href="#">전체 상품</a></li>
+								<li><a href="#">아우터</a></li>
+								<li><a href="#">재킷/베스트</a></li>
+								<li><a href="#">니트</a></li>
+								<li><a href="#">셔츠/블라우스</a></li>
+								<li><a href="#">티셔츠</a></li>
+								<li><a href="#">원피스</a></li>
+								<li><a href="#">팬츠</a></li>
+								<li><a href="#">스커트</a></li>
+								<li><a href="#">쥬얼리/시계</a></li>
+							</ul>
+						</div>
+					</li>
+					<li><a href="javascript:#void">스포츠</a>
+						<div class="dropdown_nav">
+							<ul>
+								<li><a href="#">신상품</a></li>
+								<li><a href="#">전체 상품</a></li>
+								<li><a href="#">아웃도어/캠핑
+
+</a></li>
+								<li><a href="#">피트니스</a></li>
+							</ul>
+						</div>
+					</li>
+					<li><a href="javascript:#void">가방&신발</a>
+						<div class="dropdown_nav">
+							<ul>
+								<li><a href="#">신상품</a></li>
+								<li><a href="#">전체 상품</a></li>
+								<li><a href="#">여성 가방</a></li>
+								<li><a href="#">여성 슈즈</a></li>
+								<li><a href="#">남성 가방</a></li>
+								<li><a href="#">남성 슈즈</a></li>
+							</ul>
+						</div>
+					</li>
+				</ul>
+				<ul class="right_menu">
+					<li><a href="#void" class="highlight">AI추천코디</a></li>
+					<li><a href="#void" class="highlight">옷대여</a></li>
+					<li><a href="#void">Q&A</a></li>
+					<li><a href="#void">공지사항</a></li>
+				</ul>
+			</div>
+		</div>
+	</header>
+
+	<div class="review-container inner">
+		<div class="sidebar">
+			<ul>
+				<li><a href="#">나의 주문</a></li>
+				<li><a href="#">나의 대여</a></li>
+				<li><a href="#">장바구니</a></li>
+				<li><a href="#">나의 글</a></li>
+				<ul>
+					<li><a href="#">문의글</a></li>
+					<li><a href="#">리뷰</a></li>
+				</ul>
+				<li><a href="#">회원정보</a></li>
+				<ul>
+					<li><a href="#">정보 수정</a></li>
+					<li><a href="#">회원 탈퇴</a></li>
+				</ul>
+			</ul>
+		</div>
+		<div class="main-content">
+			<div class="main-content-header">
+				<h2>나의 문의</h2>
+				<a href="YOUR_LINK_HERE">+</a>
+			</div>
+			<ul class="faq-list" id="faqList">
+				<li><label><input type="checkbox" class="checkbox">회원 탈퇴는 어떻게 하나요?</label><hr></li>
+				<li><label><input type="checkbox" class="checkbox">아이디와 비밀번호가 기억나지 않아요.</label><hr></li>
+				<li><label><input type="checkbox" class="checkbox">구매했던 제품과 가격이 달라졌어요. 차액 환불이 되나요?</label><hr></li>
+				<li><label><input type="checkbox" class="checkbox">출고가 지연된다는 알림을 받았어요.</label><hr></li>
+				<li><label><input type="checkbox" class="checkbox">배송 완료 상품을 받지 못했어요.</label><hr></li>
+				<li><label><input type="checkbox" class="checkbox">송장조회 확인이 안되고 있어요.</label><hr></li>
+				<li><label><input type="checkbox" class="checkbox">배송 조회는 어떻게 하나요?</label><hr></li>
+				<li><label><input type="checkbox" class="checkbox">교차 보상 지폐 제도가 무엇인가요?</label><hr></li>
+				<li><label><input type="checkbox" class="checkbox">일반 배송 상품은 언제 배송 되나요?</label><hr></li>
+				<li><label><input type="checkbox" class="checkbox">반송장을 입력하라고 하는데, 반송장 입력 버튼이 보이지 않아요.</label><hr></li>
+				<li><label><input type="checkbox" class="checkbox">포장(택배) 박스, 상품/상품 박스가 파손되어 배송되었어요.</label><hr></li>
+				<li><label><input type="checkbox" class="checkbox">상품을 받았는데 교환하고 싶어요.</label><hr></li>
+				<li><label><input type="checkbox" class="checkbox">주문을 취소(환불)하고 싶어요.</label><hr></li>
+			</ul>
+			<button id="importantNoticeBtn">주요 공지 등록</button>
+		</div>
+	</div>
+
+	<script>
+		const importantNoticeBtn = document.getElementById('importantNoticeBtn');
+		const checkboxes = document.querySelectorAll('.checkbox');
+		const faqList = document.getElementById('faqList');
+		
+		importantNoticeBtn.addEventListener('click', () => {
+			const checkedItems = [];
+			const uncheckedItems = [];
+			
+			checkboxes.forEach(checkbox => {
+				const listItem = checkbox.closest('li');
+				if (checkbox.checked) {
+					listItem.classList.add('highlighted');
+					checkedItems.push(listItem);
+				} else {
+					listItem.classList.remove('highlighted');
+					uncheckedItems.push(listItem);
+				}
+			});
+			
+			// Checked items to the top
+			checkedItems.reverse().forEach(item => {
+				faqList.prepend(item);
+			});
+		});
+	</script>
+</body>
+
+</html>

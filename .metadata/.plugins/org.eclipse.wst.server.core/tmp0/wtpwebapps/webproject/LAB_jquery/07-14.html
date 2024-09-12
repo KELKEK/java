@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="">
+<head>
+<meta charset="utf-8">
+<title>07-14</title>
+<style>
+    #nations > thead > tr { background-color:purple; color:yellow; }
+    #nations > thead > tr > th { padding :0px 1px 0px 0px; width:150px; }
+    #nations > tbody > tr > td { border-bottom: solid 1px gray; }
+</style>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.1.0.js"></script>
+<script type="text/javascript">
+$(document).ready(function() {
+	$("tr:nth-child(5n)").css("background-color", "aqua");
+	$("tr:even").css("font-weight", "bold");
+    
+    $("#select").on("change", sel);
+    //특정행 나타내기
+});
+
+function sel(){
+	$("tbody tr").attr("style", "display : ");
+	for(let i = 0; i < $("tbody tr").length; i++){
+		if(i+1 != $(this).val()){
+			$("tbody tr").eq(i).attr("style", "display : none");
+		}
+	}
+}
+
+</script>
+</head>
+<body>
+	<select id="select">
+	<option>1</option>
+	<option>2</option>
+	<option>3</option>
+	<option>4</option>
+	<option>5</option>
+	<option>6</option>
+	<option>7</option>
+	<option>8</option>
+	<option>9</option>
+	<option>10</option>
+	<option>11</option>
+	<option>12</option>
+	<option>13</option>
+	<option>14</option>
+	<option>15</option>
+	<option>16</option>
+	</select>
+    <table id="nations">
+        <thead>
+            <tr><th>번호</th><th>국가명</th><th>수도</th></tr>
+        </thead>
+        <tbody class="body">
+            <tr class="1"><td>1</td><td>미국</td><td>워싱턴DC</td></tr>
+            <tr class="2"><td>2</td><td>프랑스</td><td>파리</td></tr>
+            <tr class="3"><td>3</td><td>영국</td><td>런던</td></tr>
+            <tr class="4"><td>4</td><td>중국</td><td>베이징</td></tr>
+            <tr class="5"><td>5</td><td>태국</td><td>방콕</td></tr>
+            <tr class="6"><td>6</td><td>모로코</td><td>라바트</td></tr>
+            <tr class="7"><td>7</td><td>라오스</td><td>비엔티안</td></tr>
+            <tr class="8"><td>8</td><td>베트남</td><td>하노이</td></tr>
+            <tr class="9"><td>9</td><td>피지</td><td>수바</td></tr>
+            <tr class="10"><td>10</td><td>솔로몬 제도</td><td>호니아라</td></tr>
+            <tr class="11"><td>11</td><td>자메이카</td><td>킹스턴</td></tr>
+            <tr class="12"><td>12</td><td>나미비아</td><td>빈트후크</td></tr>
+            <tr class="13"><td>13</td><td>동티모르</td><td>딜리</td></tr>
+            <tr class="14"><td>14</td><td>멕시코</td><td>멕시코시티</td></tr>
+            <tr class="15"><td>15</td><td>베네수엘라</td><td>카라카스</td></tr>
+            <tr class="16"><td>16</td><td>서사모아</td><td>아피아</td></tr>
+        </tbody>
+    </table>
+</body>
+</html>

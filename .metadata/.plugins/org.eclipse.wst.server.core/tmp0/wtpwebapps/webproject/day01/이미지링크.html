@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<h1>경로연습</h1>
+<p>상대경로(현재 HTML페이지 경로를 기준으로 한다.)</p>
+<!-- img태그는 inline요소이다.(컨텐츠만큼만 자리를 차지) -->
+<!-- p태크는 block요소이다.(한줄 모두 차지) -->
+<img alt="샐러드가 맛있다..." src="../04/images/salad.jpg" width = "200" height = "200">  <!-- 나를 기준으로 상대경로를 한다. ../은 상위폴더 -->
+<hr>
+<img alt="마이크" src="./mic.jpg" width = "100%" height = "10%">  <!-- 반응형 크기-->
+<img alt="마이크" src="mic.jpg" width = "200" height = "200">  <!-- 나를 기준으로 상대경로를 한다. ../은 상위폴더 -->
+<!-- alt는 이미지가 보이지 않을 경우 대신 설명해줄 수 있는 문자를 넣음, 창애인 차별반대법 -->
+<p>절대경로</p>
+<img alt="샐러드가 맛있다..." src="http://localhost:9090/webproject/04/images/salad.jpg" width = "200" height = "200"> 
+<img alt="샐러드가 맛있다..." src="/webproject/04/images/salad.jpg" width = "200" height = "200"> 
+<img alt="마이크" src="/webproject/day01/mic.jpg" width = "200" height = "200"> 
+<!--  /로 시작하면 절대경로, /가 없으면 상대경로 -->
+</body>
+</html>
